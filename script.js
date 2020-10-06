@@ -2,7 +2,15 @@
 var timeEl = document.getElementById("time");
 var secondsLeft = 60;
 var indexEl = document.getElementById("indexPage")
-
+var startButtonEl = document.getElementById("startButton")
+var questionContainerEl = document.getElementById("questionContainer")
+var indexEl = document.getElementById("index")
+startButtonEl.addEventListener('click', startGame)
+function startGame() {
+    startButtonEl.classList.add('hide')
+    indexEl.classList.add('hide')
+    questionContainerEl.classList.remove('hide')
+}
 function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
@@ -15,9 +23,8 @@ function setTime() {
   
     }, 1000);
   }
-timeEl.setAttribute("style", "text-align:right");
-indexEl.setAttribute("style", " display: flex; text-align: center; justify-content: center; align-items: center;")
-  setTime();
+function sendMessage() {
+}
 //Buttons that work for questions
 //track your score
 //Script that tells you right or wrong

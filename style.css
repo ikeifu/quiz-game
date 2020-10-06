@@ -1,9 +1,42 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}  
+h1 {
+    text-align: center;
+}
 p {
     text-align: center;
 }
-#startButton {
-    display: flexbox;
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: rgb(245, 245, 228);
+    height: 400px;
+    border-radius: 10px;
+}
+.answerButton {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+.controls {
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+}
+#startButton {
+    background-color: rgb(131, 204, 233);
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+.hide {
+    display: none;
 }
