@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-    <h1 id="indexPage">Coding Quiz Challenge!</h1>
+    <div class="containerEl">
+    <div id="index" class="">
+    <h1>Coding Quiz Challenge!</h1>
     <p>See if you have the knowledge to pass this quiz!</p>
     <div class="controls">
-    <button id="startButton" type="submit" href="">Press here to start!</button>
+    <button id="startButton" type="submit">Press here to start!</button>
     </div>
-    <div class="questionContainer">
-    <button type="button" type="submit" class="answerButton hide">Answer1</button>
-    <button type="button" type="submit" class="answerButton hide">Answer2</button>  
-    <button type="button" type="submit" class="answerButton hide">Answer3</button>  
-    <button type="button" type="submit" class="answerButton hide">Answer4</button>
+    </div>
+    <div class="hide container" id="questionContainer">
+    <div id="question">Question</div>
+    <div class="row">
+    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer1</button>
+    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer2</button>  
+    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer3</button>  
+    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer4</button>
+    </div>
     </div>
     </div>
     <p id="time"></p>

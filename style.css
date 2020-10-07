@@ -9,22 +9,30 @@ body {
     height: 100vh;
 }  
 h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 p {
     text-align: center;
 }
-
-.container {
+#questioncontainer {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+.answerButton {
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+}
+.containerEl {
     width: 800px;
     max-width: 80%;
     background-color: rgb(245, 245, 228);
     height: 400px;
     border-radius: 10px;
-}
-.answerButton {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    display: flex;
 }
 .controls {
     display: flex;
