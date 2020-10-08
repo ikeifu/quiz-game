@@ -1,118 +1,175 @@
-var answerBtnEl = document.getElementById('answerBtn');;
-var indexEl = document.getElementById('index');;
-var indexBtnEl = document.getElementById('indexBtn');
-var answerContainerEl = document.getElementById('answerContainer');
-var questionEl = document.getElementById('question');
-var answerBtn1El = document.getElementById('answerBtn1');
-var answerBtn2El = document.getElementById('answerBtn2')
-var answerBtn3El = document.getElementById('answerBtn3')
-var answerBtn4El = document.getElementById('answerBtn4')
+var answerBtnEl = document.getElementById("answerBtn");
+var indexEl = document.getElementById("index");
+var indexBtnEl = document.getElementById("indexBtn");
+var answerContainerEl = document.getElementById("answerContainer");
+var questionEl = document.getElementById("question");
+var answerBtn1El = document.getElementById("answerBtn1");
+var answerBtn2El = document.getElementById("answerBtn2");
+var answerBtn3El = document.getElementById("answerBtn3");
+var answerBtn4El = document.getElementById("answerBtn4");
+var titleTextEl = document.getElementById("titleText");
+var secondTitleTextEl = document.getElementById("secondTitleText");
+var timeEl = document.getElementById("counter");
 var currentQuestionIndex;
-var availableQuestions = []
-var currentQuestion = {}
-var score = 0
-indexBtn.addEventListener('click', function(){
-  indexEl.classList.add('hide');
-  answerContainerEl.classList.remove('hide');
-  availableQuestions = [...questions];
-  // availableAnswer = [...answer]
+var currentQuestion = {};
+var score = 0;
+var secondsLeft = 60;
+indexBtn.addEventListener("click", function () {
+  indexEl.classList.add("hide");
+  answerContainerEl.classList.remove("hide");
   currentQuestionIndex = 0;
+  timeEl.classList.remove("hide");
   startQuestions();
-})
+  startTime();
+});
+answerBtn1El.addEventListener("click", function () {
+  selectAnswer(currentQuestion.answer[0].correct);
+});
+answerBtn2El.addEventListener("click", function () {
+  selectAnswer(currentQuestion.answer[1].correct);
+});
+answerBtn3El.addEventListener("click", function () {
+  selectAnswer(currentQuestion.answer[2].correct);
+});
+answerBtn4El.addEventListener("click", function () {
+  selectAnswer(currentQuestion.answer[3].correct);
+});
 
-function startQuestions(){
-  currentQuestionIndex++;
-  var questionIndex = Math.floor(Math.random() * availableQuestions.length);
-  currentQuestion=availableQuestions[questionIndex];
+function startQuestions() {
+  currentQuestion = questions[currentQuestionIndex];
   questionEl.innerText = currentQuestion.question;
-  var what =answerBtn1El.innerText = currentQuestion.text1;
-  console.log(what)
-  answerBtn2El.innerText = currentQuestion.text2;
-  answerBtn3El.innerText = currentQuestion.text3;
-  answerBtn4El.innerText = currentQuestion.text4;
+  answerBtn1El.innerText = currentQuestion.answer[0].text;
+  answerBtn2El.innerText = currentQuestion.answer[1].text;
+  answerBtn3El.innerText = currentQuestion.answer[2].text;
+  answerBtn4El.innerText = currentQuestion.answer[3].text;
 }
-function selectAnswer(){
-
+function endQuestions() {
+  answerContainerEl.classList.add("hide");
+  indexEl.classList.remove("hide");
+  titleTextEl.innerText = "Congratulations, you've finished!";
+  secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
+  indexBtnEl.innerText = "Play again!";
 }
-// function startTime() {
-//     var timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       timeEl.textContent = "Time: " + secondsLeft;
-  
-//       if(secondsLeft === 0) {
-//         clearInterval(timerInterval);
-//         sendMessage();
-//       }
-  
-//     }, 1000);
-    var questions = [
-      {question: "What's my favorite color?", 
-        text1: 'green', correct: true,
-        text2: 'pink', correct: false,
-        text3: 'purple', correct: false,
-        text4: 'red', correct: false
-      }, 
-      {question: "What's my favorite food?", 
-      answer: [
-        {text1: 'steak', correct: false},
-        {text2: 'lobster', correct: false},
-        {text3: 'crab', correct: false},
-        {text4: 'eel', correct: true}
-      ]},
-      {question: "What's my brothers name?", 
-      answer: [
-        {text1: 'Kevin', correct: false},
-        {text2: 'Nathan', correct: false},
-        {text3: 'David', correct: false},
-        {text4: 'Kenneth', correct: true}
-      ]},
-      {question: "Where is my dad born?", 
-      answer: [
-        {text1: 'Peru', correct: false},
-        {text2: 'England', correct: false},
-        {text3: 'Venezuela', correct: true},
-        {text4: 'Shanghai', correct: false}
-      ]},
-      {question: "Where is my mom from?", 
-      answer: [
-        {text1: 'Guangzhou', correct: false},
-        {text2: 'Hong Kong', correct: true},
-        {text3: 'Taiwan', correct: false},
-        {text4: 'Shanghai', correct: false}
-      ]},
-      {question: "What is my preferred physical activity?", 
-      answer: [
-        {text1: 'Working Out', correct: false},
-        {text2: 'Dancing', correct: true},
-        {text3: 'Biking', correct: false},
-        {text4: 'Running', correct: false}
-      ]},
-      {question: "What kind of games do I like playing?", 
-      answer: [
-        {text1: 'RPGS', correct: false},
-        {text2: 'Action', correct: false},
-        {text3: 'Sandbox', correct: false},
-        {text4: 'MOBAS', correct: true}
-      ]},
-      {question: "What's my favorite source of entertainment?",
-      answer: [
-        {text1: 'Netflix', correct: false},
-        {text2: 'Twitch', correct: true},
-        {text3: 'Cable TV', correct: false},
-        {text4: 'Amazon Videos', correct: false}
-      ]},
-      {question: "What's my favorite animal?", 
-      answer: [
-        {text1: 'dog', correct: false},
-        {text2: 'cat', correct: true},
-        {text3: 'snake', correct: false},
-        {text4: 'furret', correct: false}
-      ]},
-      {question:"What do I value most in life?", 
-      answer: [
-        {text1: 'Freedom', correct: true},
-        {text2: 'Stability', correct: false},
-        {text3: 'Money', correct: false},
-        {text4: 'Excitement', correct: false}
-      ]}
+function selectAnswer(x) {
+  if (x === true) {
+    score++;
+  }
+  currentQuestionIndex++;
+  if (currentQuestionIndex === questions.length) {
+    endQuestions();
+  } else {
+    startQuestions();
+  }
+}
+function startTime() {
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timeEl.textContent = "Time: " + secondsLeft;
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      indexEl.classList.remove('hide');
+      answerContainerEl.classList.add("hide");
+      titleTextEl.innerText = "You've run out of time!";
+      secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
+      indexBtnEl.innerText = "Try again!"
+      secondsLeft = 60
+    } else if (currentQuestionIndex === questions.length) {
+      clearInterval(timerInterval);
+      timeEl.classList.add("hide");
+      currentQuestionIndex = 0
+      secondsLeft = 60
+    }
+  }, 1000);
+}
+var questions = [
+  {
+    question: "What's my favorite color?",
+    answer: [
+      { text: "green", correct: true },
+      { text: "pink", correct: false },
+      { text: "purple", correct: false },
+      { text: "red", correct: false }
     ]
+  },
+  {
+    question: "What's my favorite food?",
+    answer: [
+      { text: "steak", correct: false },
+      { text: "lobster", correct: false },
+      { text: "crab", correct: false },
+      { text: "eel", correct: true }
+    ]
+  },
+  {
+    question: "What's my brothers name?",
+    answer: [
+      { text: "Kevin", correct: false },
+      { text: "Nathan", correct: false },
+      { text: "David", correct: false },
+      { text: "Kenneth", correct: true }
+    ]
+  },
+  {
+    question: "Where is my dad born?",
+    answer: [
+      { text: "Peru", correct: false },
+      { text: "England", correct: false },
+      { text: "Venezuela", correct: true },
+      { text: "Shanghai", correct: false }
+    ]
+  },
+  {
+    question: "Where is my mom from?",
+    answer: [
+      { text: "Guangzhou", correct: false },
+      { text: "Hong Kong", correct: true },
+      { text: "Taiwan", correct: false },
+      { text: "Shanghai", correct: false }
+    ]
+  },
+  {
+    question: "What is my preferred physical activity?",
+    answer: [
+      { text: "Working Out", correct: false },
+      { text: "Dancing", correct: true },
+      { text: "Biking", correct: false },
+      { text: "Running", correct: false }
+    ]
+  },
+  {
+    question: "What kind of games do I like playing?",
+    answer: [
+      { text: "RPGS", correct: false },
+      { text: "Action", correct: false },
+      { text: "Sandbox", correct: false },
+      { text: "MOBAS", correct: true }
+    ]
+  },
+  {
+    question: "What's my favorite source of entertainment?",
+    answer: [
+      { text: "Netflix", correct: false },
+      { text: "Twitch", correct: true },
+      { text: "Cable TV", correct: false },
+      { text: "Amazon Videos", correct: false }
+    ]
+  },
+  {
+    question: "What's my favorite animal?",
+    answer: [
+      { text: "dog", correct: false },
+      { text: "cat", correct: true },
+      { text: "snake", correct: false },
+      { text: "furret", correct: false }
+    ]
+  },
+  {
+    question: "What do I value most in life?",
+    answer: [
+      { text: "Freedom", correct: true },
+      { text: "Stability", correct: false },
+      { text: "Money", correct: false },
+      { text: "Excitement", correct: false }
+    ]
+  }
+];

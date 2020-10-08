@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz Game</title>
-    <link href="style.css" rel="stylesheet">
-</head>
-<body>
-   <main class="container">
-    <div class="index" id="index">
-        <h1>My Trivia Quiz!</h1>
-        <h2>See how much you know about me!</h2>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="index" id="index">
+        <h1 id="titleText">My Trivia Quiz!</h1>
+        <h2 id="secondTitleText">See how much you know about me!</h2>
         <div class="control">
-        <button class="indexBtn" id="indexBtn">Click to start!</button>
+          <button class="indexBtn" id="indexBtn">Click to start!</button>
         </div>
-    </div>
-    <div class="hide" id="answerContainer">
+      </div>
+      <div class="hide" id="answerContainer">
         <div id="question">Question</div>
         <div class="answerBtnGrid" id="answerBtnGrid">
-        <button class="answerBtn" id="answerBtn1">Answer1</button>
-        <button class="answerBtn" id="answerBtn2">Answer2</button>
-        <button class="answerBtn" id="answerBtn3">Answer3</button>
-        <button class="answerBtn" id="answerBtn4">Answer4</button>
+          <button class="answerBtn" id="answerBtn1">Answer1</button>
+          <button class="answerBtn" id="answerBtn2">Answer2</button>
+          <button class="answerBtn" id="answerBtn3">Answer3</button>
+          <button class="answerBtn" id="answerBtn4">Answer4</button>
         </div>
-    </div>
-
-   </main>
+      </div>
+      <div id="counter"></div>
+    </main>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
