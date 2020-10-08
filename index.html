@@ -4,29 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="containerEl">
-    <div id="index" class="">
-    <h1>Coding Quiz Challenge!</h1>
-    <p>See if you have the knowledge to pass this quiz!</p>
-    <div class="controls">
-    <button id="startButton" type="submit">Press here to start!</button>
+   <main class="container">
+    <div class="index" id="index">
+        <h1>My Trivia Quiz!</h1>
+        <h2>See how much you know about me!</h2>
+        <div class="control">
+        <button class="indexBtn" id="indexBtn">Click to start!</button>
+        </div>
     </div>
+    <div class="hide" id="answerContainer">
+        <div id="question">Question</div>
+        <div class="answerBtnGrid" id="answerBtnGrid">
+        <button class="answerBtn" id="answerBtn1">Answer1</button>
+        <button class="answerBtn" id="answerBtn2">Answer2</button>
+        <button class="answerBtn" id="answerBtn3">Answer3</button>
+        <button class="answerBtn" id="answerBtn4">Answer4</button>
+        </div>
     </div>
-    <div class="hide container" id="questionContainer">
-    <div id="question">Question</div>
-    <div class="row">
-    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer1</button>
-    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer2</button>  
-    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer3</button>  
-    <button type="button" type="submit" class="answerButton col-lg-4" id="answerButton">Answer4</button>
-    </div>
-    </div>
-    </div>
-    <p id="time"></p>
+
+   </main>
     <script src="script.js"></script>
 </body>
 </html>
