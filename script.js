@@ -19,6 +19,7 @@ var formEl = document.getElementById('formHere');
 var lastUserScoresEl = document.getElementById('lastUserScores');
 var userList = [];
 var timeoutEl = document.getElementById('timeout');
+var scoreList = [];
 // var pastUsers = localStorage.getItem('userText').push(userList);
 // var actualUserList = pastUsers + userList;
 indexBtn.addEventListener("click", function () {
@@ -44,10 +45,13 @@ answerBtn4El.addEventListener("click", function () {
 submitButtonEl.addEventListener("click", function(e){
   e.preventDefault();
   var pastUsers = localStorage.getItem('userText');
+  var pastScore = localStorage.getItem('score');
   var userText = userDataEl.value.trim();
   userList.push(userText);
   userList.push(pastUsers);
   userDataEl.value = "";
+  scoreList.push(score);
+  scoreList.push(pastScore);
   if (userText === ""){
     return;
   }
@@ -56,21 +60,28 @@ submitButtonEl.addEventListener("click", function(e){
   submitButtonEl.classList.add("hide");
 
   // var user = userDataEl.value;
+  localStorage.setItem("score", score);
   localStorage.setItem("userText", userText);
 });
 // function storeUserData() {
 //   var user = document.getElementById('userData').value;
 //   localStorage.setItem("user", user);
 // }
+ 
 function renderUser() {
   for (var i = 0; i < userList.length; i++) {
     var currentUser = userList[i];
+    var currentScores = scoreList[i];
     var li = document.createElement('ul');
-    li.textContent = currentUser + ": " + score;
+    li.textContent = currentUser + ": " + currentScores;
     li.setAttribute('data-index', i);
     lastUserScoresEl.appendChild(li);
   }
 }
+// function renderScores() {
+//   for (var i = 0; i < scoreList.length; i++) {
+//     const currentScores = scoreList[i];
+//   }
 function startQuestions() {
   currentQuestion = questions[currentQuestionIndex];
   questionEl.innerText = currentQuestion.question;
