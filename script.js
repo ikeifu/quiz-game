@@ -13,6 +13,14 @@ var timeEl = document.getElementById("counter");
 var currentQuestionIndex;
 var score = 0;
 var secondsLeft = 60;
+var submitButtonEl = document.getElementById('submitButton');
+var userDataEl = document.getElementById('userData');
+var formEl = document.getElementById('formHere');
+var lastUserScoresEl = document.getElementById('lastUserScores');
+var userList = [];
+var timeoutEl = document.getElementById('timeout');
+// var pastUsers = localStorage.getItem('userText').push(userList);
+// var actualUserList = pastUsers + userList;
 indexBtn.addEventListener("click", function () {
   indexEl.classList.add("hide");
   answerContainerEl.classList.remove("hide");
@@ -33,7 +41,36 @@ answerBtn3El.addEventListener("click", function () {
 answerBtn4El.addEventListener("click", function () {
   selectAnswer(currentQuestion.answer[3].correct);
 });
+submitButtonEl.addEventListener("click", function(e){
+  e.preventDefault();
+  var pastUsers = localStorage.getItem('userText');
+  var userText = userDataEl.value.trim();
+  userList.push(userText);
+  userList.push(pastUsers);
+  userDataEl.value = "";
+  if (userText === ""){
+    return;
+  }
+  renderUser();
+  userDataEl.classList.add("hide");
+  submitButtonEl.classList.add("hide");
 
+  // var user = userDataEl.value;
+  localStorage.setItem("userText", userText);
+});
+// function storeUserData() {
+//   var user = document.getElementById('userData').value;
+//   localStorage.setItem("user", user);
+// }
+function renderUser() {
+  for (var i = 0; i < userList.length; i++) {
+    var currentUser = userList[i];
+    var li = document.createElement('ul');
+    li.textContent = currentUser + ": " + score;
+    li.setAttribute('data-index', i);
+    lastUserScoresEl.appendChild(li);
+  }
+}
 function startQuestions() {
   currentQuestion = questions[currentQuestionIndex];
   questionEl.innerText = currentQuestion.question;
@@ -43,11 +80,12 @@ function startQuestions() {
   answerBtn4El.innerText = currentQuestion.answer[3].text;
 }
 function endQuestions() {
+  formEl.classList.remove("hide");
   answerContainerEl.classList.add("hide");
-  indexEl.classList.remove("hide");
-  titleTextEl.innerText = "Congratulations, you've finished!";
-  secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
-  indexBtnEl.innerText = "Play again!";
+  // indexEl.classList.remove("hide");
+  // titleTextEl.innerText = "Congratulations, you've finished!";
+  // secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
+  // indexBtnEl.innerText = "Play again!";
 }
 function selectAnswer(x) {
   if (x === true) {
@@ -68,11 +106,12 @@ function startTime() {
     timeEl.textContent = "Time: " + secondsLeft;
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
-      indexEl.classList.remove('hide');
+      formEl.classList.remove('hide');
       answerContainerEl.classList.add("hide");
-      titleTextEl.innerText = "You've run out of time!";
-      secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
-      indexBtnEl.innerText = "Try again!"
+      timeoutEl.textContent = "You ran out of time!"
+      // titleTextEl.innerText = "You've run out of time!";
+      // secondTitleTextEl.innerText = "You scored: " + score + "/" + questions.length;
+      // indexBtnEl.innerText = "Try again!"
       secondsLeft = 60
     } else if (currentQuestionIndex === questions.length) {
       clearInterval(timerInterval);

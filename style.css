@@ -50,3 +50,14 @@ body {
     gap: 20px;
     margin: 20px 0;
 }
+#submitButton {
+    padding: 20px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+#userData {
+    padding: 20px;
+}
+#formHere {
+    text-align: center;
+}
