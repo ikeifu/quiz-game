@@ -11,7 +11,6 @@ var titleTextEl = document.getElementById("titleText");
 var secondTitleTextEl = document.getElementById("secondTitleText");
 var timeEl = document.getElementById("counter");
 var currentQuestionIndex;
-var currentQuestion = {};
 var score = 0;
 var secondsLeft = 60;
 indexBtn.addEventListener("click", function () {
@@ -53,6 +52,8 @@ function endQuestions() {
 function selectAnswer(x) {
   if (x === true) {
     score++;
+  } else {
+    secondsLeft -= 5
   }
   currentQuestionIndex++;
   if (currentQuestionIndex === questions.length) {
